@@ -1,12 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Parametrized test Suite" verbose="1">
-    <test name="Parametrized Test 1: iPhone dollar">
-        <parameter name="currencyParam" value="USD" />
-        <parameter name="productParam" value="iPhone" />
-        <parameter name="priceParam" value="$123.20" />
-        <parameter name="productCodeParam" value="product 11" />
+<suite name="Madison Island test Suite" verbose="1">
+    <test name="Add to Cart Test">
         <classes>
-<!--            <class name="scripts.AddProductToCartTest"/>-->
+            <class name="scripts.AddProductToCartTest"/>
+        </classes>
+    </test>
+    <test name="Login Test">
+        <classes>
+            <class name="scripts.LoginTest"/>
         </classes>
     </test>
 </suite>

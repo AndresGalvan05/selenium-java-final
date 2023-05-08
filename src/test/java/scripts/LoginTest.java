@@ -1,4 +1,29 @@
 package scripts;
 
-public class LoginTest {
+import dataProviders.LoginData;
+import org.testng.annotations.Test;
+import pages.HeaderPage;
+import pages.LogOutPage;
+import pages.LoginPage;
+
+import static org.testng.Assert.assertEquals;
+
+public class LoginTest extends BaseTest {
+    @Test(dataProvider = "loginCredentials", dataProviderClass = LoginData.class)
+    public void loginTest(String email, String password, String customerName) {
+        driver.get(baseUrl);
+        String welcomeMessage = "Welcome, " + customerName + "!";
+
+        HeaderPage header = new HeaderPage(driver);
+
+        LoginPage loginPage = header.clickLogInOption();
+        loginPage.setEmailAndPassword(email, password);
+        loginPage.clickLoginButton();
+        assertEquals(header.getWelcomeMessage(), welcomeMessage.toUpperCase());
+
+        LogOutPage logOutPage = header.clickLogOutOption();
+        assertEquals(logOutPage.getLogOutMessage(), "YOU ARE NOW LOGGED OUT");
+
+        takeScreenshot();
+    }
 }
