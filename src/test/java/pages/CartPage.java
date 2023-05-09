@@ -17,6 +17,9 @@ public class CartPage {
 //    @FindBy(css = ".product-cart-sku")
 //    private WebElement productCode;
 
+    @FindBy(css = "div.cart-totals-wrapper > div > ul > li > button")
+    private WebElement checkoutButton;
+
     public CartPage(WebDriver driver) {
         CartPage.driver = driver;
         PageFactory.initElements(driver, this);
@@ -43,4 +46,9 @@ public class CartPage {
         return product.getText();
     }
 
+    @Step("Click checkout button")
+    public CheckoutPage clickCheckoutButton() {
+        checkoutButton.click();
+        return new CheckoutPage(driver);
+    }
 }

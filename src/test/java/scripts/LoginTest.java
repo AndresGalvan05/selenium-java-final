@@ -2,7 +2,7 @@ package scripts;
 
 import dataProviders.LoginData;
 import org.testng.annotations.Test;
-import pages.HeaderPage;
+import pages.Header;
 import pages.LogOutPage;
 import pages.LoginPage;
 
@@ -14,16 +14,16 @@ public class LoginTest extends BaseTest {
         driver.get(baseUrl);
         String welcomeMessage = "Welcome, " + customerName + "!";
 
-        HeaderPage header = new HeaderPage(driver);
+        Header header = new Header(driver);
 
         LoginPage loginPage = header.clickLogInOption();
         loginPage.setEmailAndPassword(email, password);
         loginPage.clickLoginButton();
         assertEquals(header.getWelcomeMessage(), welcomeMessage.toUpperCase());
 
+        takeScreenshot();
+
         LogOutPage logOutPage = header.clickLogOutOption();
         assertEquals(logOutPage.getLogOutMessage(), "YOU ARE NOW LOGGED OUT");
-
-        takeScreenshot();
     }
 }

@@ -19,6 +19,9 @@ public class ProductPage {
     @FindBy(id = "attribute180")
     private WebElement sizeSelector;
 
+    @FindBy(css = "input[type='checkbox']")
+    private WebElement checkBoxButton;
+
     @FindBy(css = ".add-to-cart-buttons button")
     private WebElement addToCartButton;
 
@@ -44,5 +47,10 @@ public class ProductPage {
     public CartPage addToCart() {
         addToCartButton.click();
         return new CartPage(driver);
+    }
+
+    @Step("Check checkbox")
+    public void checkCheckbox() {
+        checkBoxButton.click();
     }
 }

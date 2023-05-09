@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HeaderPage {
+public class Header {
     private static WebDriver driver;
 
     @FindBy(css = "#header > div > div.skip-links > a.skip-link.skip-account")
@@ -16,8 +16,8 @@ public class HeaderPage {
     @FindBy(css = ".welcome-msg")
     private WebElement welcomeMessage;
 
-    public HeaderPage(WebDriver driver) {
-        HeaderPage.driver = driver;
+    public Header(WebDriver driver) {
+        Header.driver = driver;
         PageFactory.initElements(driver, this);
     }
 

@@ -1,8 +1,7 @@
 package scripts;
 
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.HomePage;
+import pages.CategoryMenu;
 import pages.ProductSubCategoryPage;
 import pages.ProductPage;
 import pages.CartPage;
@@ -14,9 +13,9 @@ public class AddProductToCartTest extends BaseTest {
     public void testAddToCart(String subCategory, String product, String productColor, String productSize, String productCode) {
         driver.get(baseUrl);
 
-        HomePage home = new HomePage(driver, actions);
+        CategoryMenu categoryMenu = new CategoryMenu(driver, actions);
 
-        ProductSubCategoryPage subCategoryPage = home.clickMenSubCategory(subCategory);
+        ProductSubCategoryPage subCategoryPage = categoryMenu.clickMenSubCategory(subCategory);
         assertEquals(subCategoryPage.getSubCategoryTitle(), subCategory.toUpperCase());
 
         ProductPage productPage = subCategoryPage.selectProduct(product);

@@ -1,13 +1,18 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Madison Island test Suite" verbose="1">
+    <test name="Login Test">
+        <classes>
+            <class name="scripts.LoginTest"/>
+        </classes>
+    </test>
     <test name="Add to Cart Test">
         <classes>
             <class name="scripts.AddProductToCartTest"/>
         </classes>
     </test>
-    <test name="Login Test">
+    <test name="Checkout Test">
         <classes>
-            <class name="scripts.LoginTest"/>
+            <class name="scripts.CheckoutWithCashTest"/>
         </classes>
     </test>
 </suite>
