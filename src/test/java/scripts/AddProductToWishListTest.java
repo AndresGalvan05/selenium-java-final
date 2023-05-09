@@ -6,9 +6,9 @@ import pages.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
-public class CheckoutWithCashTest extends BaseTest {
+public class AddProductToWishListTest extends BaseTest {
     @Test(dataProvider = "checkout", dataProviderClass = dataProviders.CheckoutData.class)
-    public void testCheckoutWithCash(String email, String password, String subCategory, String product) {
+    public void testAddToWishlist(String email, String password, String subCategory, String product) {
         driver.get(baseUrl);
 
         // Login
@@ -17,21 +17,17 @@ public class CheckoutWithCashTest extends BaseTest {
         loginPage.setEmailAndPassword(email, password);
         loginPage.clickLoginButton();
 
-        // Add product to cart
+        // Add to wishlist
         CategoryMenu categoryMenu = new CategoryMenu(driver, actions);
         ProductSubCategoryPage subCategoryPage = categoryMenu.clickHomeAndDecorSubCategory(subCategory);
-        ProductPage productPage = subCategoryPage.selectProduct(product);
-        productPage.checkCheckbox();
-        CartPage cartPage = productPage.addToCart();
+        assertEquals(subCategoryPage.getSubCategoryPageTitle(), subCategory.toUpperCase());
 
-        // Checkout
-        CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
-        assertNotNull(checkoutPage.getCheckoutPageTitle());
-        checkoutPage.selectBillingAddress();
-//        checkoutPage.selectShippingMethod();
-        checkoutPage.selectCashPaymentMethod();
-        checkoutPage.clickPlaceOrderButton();
-        assertNotNull(checkoutPage.getThankYouMessage());
+        ProductPage productPage = subCategoryPage.selectProduct(product);
+        assertEquals(productPage.getProductPageTitle(), product);
+
+        WishListPage wishListPage = productPage.addToWishlist();
+        assertNotNull(wishListPage.getWishListPageTitle());
+        assertEquals(wishListPage.getProductName(product), product);
 
         takeScreenshot();
 

@@ -11,7 +11,7 @@ public class ProductSubCategoryPage {
     private static WebDriver driver;
 
     @FindBy(css = ".page-title h1")
-    private WebElement subCategoryTitle;
+    private WebElement subCategoryPageTitle;
 
     public ProductSubCategoryPage(WebDriver driver) {
         ProductSubCategoryPage.driver = driver;
@@ -19,8 +19,8 @@ public class ProductSubCategoryPage {
     }
 
     @Step("Get sub category title")
-    public String getSubCategoryTitle() {
-        return subCategoryTitle.getText();
+    public String getSubCategoryPageTitle() {
+        return subCategoryPageTitle.getText();
     }
 
     @Step("Select product")

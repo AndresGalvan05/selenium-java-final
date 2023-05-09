@@ -27,11 +27,6 @@ public class CategoryMenu {
         PageFactory.initElements(driver, this);
     }
 
-//    public void selectCategory(String category) {
-//        WebElement categoryElement = driver.findElement(By.linkText(category));
-//        actions.moveToElement(categoryElement).perform();
-//    }
-
     @Step("Click a subcategory of the Men category")
     public ProductSubCategoryPage clickMenSubCategory(String subCategory) {
         actions.moveToElement(menCategory).perform();

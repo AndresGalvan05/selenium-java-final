@@ -11,11 +11,7 @@ public class CartPage {
     private static WebDriver driver;
 
     @FindBy(css = ".page-title h1")
-    private WebElement cartTitle;
-
-    //table[@id='shopping-cart-table']/tbody/tr/td[2]/div
-//    @FindBy(css = ".product-cart-sku")
-//    private WebElement productCode;
+    private WebElement cartPageTitle;
 
     @FindBy(css = "div.cart-totals-wrapper > div > ul > li > button")
     private WebElement checkoutButton;
@@ -25,24 +21,18 @@ public class CartPage {
         PageFactory.initElements(driver, this);
     }
 
-    @Step("Get cart title")
-    public String getCartTitle() {
-        if (cartTitle.getText().equals("SHOPPING CART")) {
-            return cartTitle.getText();
+    @Step("Get shopping cart page title")
+    public String getCartPageTitle() {
+        if (cartPageTitle.getText().equals("SHOPPING CART")) {
+            return cartPageTitle.getText();
         } else {
             return null;
         }
     }
 
-    @Step("Get product code")
-    public String getProductCode(String productCode) {
-        //*[@id="shopping-cart-table"]/tbody/tr[1]/td[2]/div
-        //*[@id="shopping-cart-table"]/tbody/tr[3]/td[2]/div
-        //*[@id="shopping-cart-table"]/tbody/tr[1]/td[2]/div/text()
-        //*[@id="shopping-cart-table"]/tbody/tr[1]/td[2]/div/text()="+productCode+"
-//        WebElement product = driver.findElement(By.xpath("//*[@id='shopping-cart-table']/tbody/tr/td/div[text()='" + productCode + "']"));
-//        WebElement product = driver.findElement(By.xpath("//*[@id='shopping-cart-table']/tbody/tr/td/div/text()='" + productCode + "'"));
-        WebElement product = driver.findElement(By.xpath("//*[@id='shopping-cart-table']/tbody/tr[1]/td[2]/div/text()="+productCode+""));
+    @Step("Get product name")
+    public String getProductName(String productName) {
+        WebElement product = driver.findElement(By.linkText(productName.toUpperCase()));
         return product.getText();
     }
 

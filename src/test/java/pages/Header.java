@@ -16,6 +16,9 @@ public class Header {
     @FindBy(css = ".welcome-msg")
     private WebElement welcomeMessage;
 
+    @FindBy(css = "#header-account > div > ul > li.last > a[title='Log In']")
+    private WebElement loginLink;
+
     public Header(WebDriver driver) {
         Header.driver = driver;
         PageFactory.initElements(driver, this);
@@ -24,7 +27,6 @@ public class Header {
     @Step("Click on Log In option")
     public LoginPage clickLogInOption() {
         accountLink.click();
-        WebElement loginLink = driver.findElement(By.linkText("Log In"));
         loginLink.click();
         return new LoginPage(driver);
     }

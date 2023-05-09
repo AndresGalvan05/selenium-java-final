@@ -19,6 +19,10 @@ public class LogOutPage {
 
     @Step("Get log out message")
     public String getLogOutMessage() {
-        return logOutMessage.getText();
+        if (logOutMessage.getText().equals("YOU ARE NOW LOGGED OUT")) {
+            return logOutMessage.getText();
+        } else {
+            return null;
+        }
     }
 }

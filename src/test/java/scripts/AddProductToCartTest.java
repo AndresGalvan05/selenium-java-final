@@ -10,24 +10,22 @@ import static org.testng.Assert.*;
 
 public class AddProductToCartTest extends BaseTest {
     @Test(dataProvider = "products", dataProviderClass = dataProviders.ProductsData.class)
-    public void testAddToCart(String subCategory, String product, String productColor, String productSize, String productCode) {
+    public void testAddToCart(String subCategory, String product, String productColor, String productSize) {
         driver.get(baseUrl);
 
         CategoryMenu categoryMenu = new CategoryMenu(driver, actions);
 
         ProductSubCategoryPage subCategoryPage = categoryMenu.clickMenSubCategory(subCategory);
-        assertEquals(subCategoryPage.getSubCategoryTitle(), subCategory.toUpperCase());
+        assertEquals(subCategoryPage.getSubCategoryPageTitle(), subCategory.toUpperCase());
 
         ProductPage productPage = subCategoryPage.selectProduct(product);
-        assertEquals(productPage.getProductTitle(), product);
+        assertEquals(productPage.getProductPageTitle(), product);
 
         productPage.selectColorAndSize(productColor, productSize);
         CartPage cartPage = productPage.addToCart();
-        assertNotNull(cartPage.getCartTitle());
-//        assertEquals(cartPage.getProductCode(productCode), productCode);
+        assertNotNull(cartPage.getCartPageTitle());
+        assertEquals(cartPage.getProductName(product), product);
 
         takeScreenshot();
     }
 }
-
-

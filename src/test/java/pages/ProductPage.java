@@ -11,7 +11,7 @@ public class ProductPage {
     private static WebDriver driver;
 
     @FindBy(css = ".product-name .h1")
-    private WebElement productTitle;
+    private WebElement productPageTitle;
 
     @FindBy(id = "attribute92")
     private WebElement colorSelector;
@@ -25,14 +25,17 @@ public class ProductPage {
     @FindBy(css = ".add-to-cart-buttons button")
     private WebElement addToCartButton;
 
+    @FindBy(css = ".add-to-links .link-wishlist")
+    private WebElement addToWishlistButton;
+
     public ProductPage(WebDriver driver) {
         ProductPage.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     @Step("Get product title")
-    public String getProductTitle() {
-        return productTitle.getText();
+    public String getProductPageTitle() {
+        return productPageTitle.getText();
     }
 
     @Step("Select color and size")
@@ -47,6 +50,12 @@ public class ProductPage {
     public CartPage addToCart() {
         addToCartButton.click();
         return new CartPage(driver);
+    }
+
+    @Step("Add product to wishlist")
+    public WishListPage addToWishlist() {
+        addToWishlistButton.click();
+        return new WishListPage(driver);
     }
 
     @Step("Check checkbox")
