@@ -10,11 +10,14 @@ import org.openqa.selenium.support.PageFactory;
 public class Header {
     private static WebDriver driver;
 
+    @FindBy(css = ".welcome-msg")
+    private WebElement welcomeMessage;
+
     @FindBy(css = "#header > div > div.skip-links > a.skip-link.skip-account")
     private WebElement accountLink;
 
-    @FindBy(css = ".welcome-msg")
-    private WebElement welcomeMessage;
+    @FindBy(id = "search")
+    private WebElement searchBar;
 
     @FindBy(css = "#header-account > div > ul > li.last > a[title='Log In']")
     private WebElement loginLink;
@@ -22,6 +25,11 @@ public class Header {
     public Header(WebDriver driver) {
         Header.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    @Step("Get welcome message")
+    public String getWelcomeMessage() {
+        return welcomeMessage.getText();
     }
 
     @Step("Click on Log In option")
@@ -39,8 +47,16 @@ public class Header {
         return new LogOutPage(driver);
     }
 
-    @Step("Get welcome message")
-    public String getWelcomeMessage() {
-        return welcomeMessage.getText();
+    @Step("Search for a product")
+    public SearchProductPage searchForProduct(String product) {
+        searchBar.sendKeys(product);
+        WebElement searchButton = driver.findElement(By.cssSelector("#search_mini_form > div.input-box > button"));
+        searchButton.click();
+        return new SearchProductPage(driver);
+    }
+
+    @Step("Clear search bar")
+    public void clearSearchBar() {
+        searchBar.clear();
     }
 }

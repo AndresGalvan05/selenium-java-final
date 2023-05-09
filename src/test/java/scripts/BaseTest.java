@@ -27,6 +27,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         actions = new Actions(driver);
         baseUrl = "http://magento-demo.lexiconn.com/";
+        driver.get(baseUrl);
     }
 
     @AfterTest

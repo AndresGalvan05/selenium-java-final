@@ -11,8 +11,6 @@ import static org.testng.Assert.*;
 public class AddProductToCartTest extends BaseTest {
     @Test(dataProvider = "products", dataProviderClass = dataProviders.ProductsData.class)
     public void testAddToCart(String subCategory, String product, String productColor, String productSize) {
-        driver.get(baseUrl);
-
         CategoryMenu categoryMenu = new CategoryMenu(driver, actions);
 
         ProductSubCategoryPage subCategoryPage = categoryMenu.clickMenSubCategory(subCategory);

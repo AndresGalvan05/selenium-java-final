@@ -9,8 +9,6 @@ import static org.testng.Assert.assertNotNull;
 public class AddProductToWishListTest extends BaseTest {
     @Test(dataProvider = "checkout", dataProviderClass = dataProviders.CheckoutData.class)
     public void testAddToWishlist(String email, String password, String subCategory, String product) {
-        driver.get(baseUrl);
-
         // Login
         Header header = new Header(driver);
         LoginPage loginPage = header.clickLogInOption();

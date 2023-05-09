@@ -13,14 +13,12 @@ public class WishListPage {
     @FindBy(css = ".page-title h1")
     private WebElement wishListPageTitle;
 
-
-    private WebElement productName;
-
     public WishListPage(WebDriver driver) {
         WishListPage.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Get wish list page title")
     public String getWishListPageTitle() {
         if (wishListPageTitle.getText().equals("MY WISHLIST")) {
             return wishListPageTitle.getText();

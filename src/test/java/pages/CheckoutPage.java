@@ -25,9 +25,6 @@ public class CheckoutPage {
     @FindBy(css = "#payment-buttons-container > button")
     private WebElement paymentContinueButton;
 
-    @FindBy(css = "#shipping-method-buttons-container > button")
-    private WebElement shippingContinueButton;
-
     @FindBy(id = "p_method_cashondelivery")
     private WebElement cashPaymentMethod;
 
@@ -54,13 +51,6 @@ public class CheckoutPage {
         WebElement billingAddress = driver.findElement(By.id("billing-address-select"));
         billingAddress.click();
         billingContinueButton.click();
-    }
-
-    public void selectShippingMethod() {
-        WebElement freeShipping = driver.findElement(By.id("checkout-shipping-method-load"));
-        if (freeShipping != null) {
-            shippingContinueButton.click();
-        }
     }
 
     @Step("Select cash payment method")

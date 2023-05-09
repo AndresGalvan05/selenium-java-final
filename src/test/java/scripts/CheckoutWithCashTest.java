@@ -3,14 +3,11 @@ package scripts;
 import org.testng.annotations.Test;
 import pages.*;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 public class CheckoutWithCashTest extends BaseTest {
     @Test(dataProvider = "checkout", dataProviderClass = dataProviders.CheckoutData.class)
     public void testCheckoutWithCash(String email, String password, String subCategory, String product) {
-        driver.get(baseUrl);
-
         // Login
         Header header = new Header(driver);
         LoginPage loginPage = header.clickLogInOption();
@@ -28,7 +25,6 @@ public class CheckoutWithCashTest extends BaseTest {
         CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
         assertNotNull(checkoutPage.getCheckoutPageTitle());
         checkoutPage.selectBillingAddress();
-//        checkoutPage.selectShippingMethod();
         checkoutPage.selectCashPaymentMethod();
         checkoutPage.clickPlaceOrderButton();
         assertNotNull(checkoutPage.getThankYouMessage());

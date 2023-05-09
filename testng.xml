@@ -20,4 +20,9 @@
             <class name="scripts.CheckoutWithCashTest"/>
         </classes>
     </test>
+    <test name="Search Product Test">
+        <classes>
+            <class name="scripts.SearchProductTest"/>
+        </classes>
+    </test>
 </suite>
