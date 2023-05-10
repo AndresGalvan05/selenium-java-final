@@ -4,25 +4,17 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LogOutPage {
-    private static WebDriver driver;
-
+public class LogOutPage extends BasePage {
     @FindBy(css = "div.main-container.col1-layout h1")
     private WebElement logOutMessage;
 
     public LogOutPage(WebDriver driver) {
-        LogOutPage.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @Step("Get log out message")
     public String getLogOutMessage() {
-        if (logOutMessage.getText().equals("YOU ARE NOW LOGGED OUT")) {
-            return logOutMessage.getText();
-        } else {
-            return null;
-        }
+        return logOutMessage.getText();
     }
 }

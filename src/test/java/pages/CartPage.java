@@ -5,11 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class CartPage {
-    private static WebDriver driver;
-
+public class CartPage extends BasePage {
     @FindBy(css = ".page-title h1")
     private WebElement cartPageTitle;
 
@@ -17,17 +14,12 @@ public class CartPage {
     private WebElement checkoutButton;
 
     public CartPage(WebDriver driver) {
-        CartPage.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @Step("Get shopping cart page title")
     public String getCartPageTitle() {
-        if (cartPageTitle.getText().equals("SHOPPING CART")) {
-            return cartPageTitle.getText();
-        } else {
-            return null;
-        }
+        return cartPageTitle.getText();
     }
 
     @Step("Get product name")

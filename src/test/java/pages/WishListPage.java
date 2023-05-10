@@ -5,26 +5,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class WishListPage {
-    private static WebDriver driver;
-
+public class WishListPage extends BasePage {
     @FindBy(css = ".page-title h1")
     private WebElement wishListPageTitle;
 
     public WishListPage(WebDriver driver) {
-        WishListPage.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @Step("Get wish list page title")
     public String getWishListPageTitle() {
-        if (wishListPageTitle.getText().equals("MY WISHLIST")) {
-            return wishListPageTitle.getText();
-        } else {
-            return null;
-        }
+        return wishListPageTitle.getText();
     }
 
     @Step("Get product name")

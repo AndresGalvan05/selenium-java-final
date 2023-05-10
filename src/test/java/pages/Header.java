@@ -5,11 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class Header {
-    private static WebDriver driver;
-
+public class Header extends BasePage {
     @FindBy(css = ".welcome-msg")
     private WebElement welcomeMessage;
 
@@ -23,8 +20,7 @@ public class Header {
     private WebElement loginLink;
 
     public Header(WebDriver driver) {
-        Header.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @Step("Get welcome message")

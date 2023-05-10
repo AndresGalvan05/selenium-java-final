@@ -6,12 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class CategoryMenu {
-    private static WebDriver driver;
-    private static Actions actions;
-
+public class CategoryMenu extends BasePage {
     @FindBy(css = "#nav > ol > li.level0.nav-2.parent > a")
     private WebElement menCategory;
 
@@ -22,9 +18,7 @@ public class CategoryMenu {
     private WebElement homeAndDecorCategory;
 
     public CategoryMenu(WebDriver driver, Actions actions) {
-        CategoryMenu.driver = driver;
-        CategoryMenu.actions = actions;
-        PageFactory.initElements(driver, this);
+        super(driver, actions);
     }
 
     @Step("Click a subcategory of the Men category")

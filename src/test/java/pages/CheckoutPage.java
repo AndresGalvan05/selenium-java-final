@@ -5,11 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class CheckoutPage {
-    private static WebDriver driver;
-
+public class CheckoutPage extends BasePage {
     @FindBy(css = ".page-title h1")
     private WebElement checkoutPageTitle;
 
@@ -32,17 +29,12 @@ public class CheckoutPage {
     private WebElement placeOrderButton;
 
     public CheckoutPage(WebDriver driver) {
-        CheckoutPage.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @Step("Get checkout title")
     public String getCheckoutPageTitle() {
-        if (checkoutPageTitle.getText().equals("CHECKOUT")) {
-            return checkoutPageTitle.getText();
-        } else {
-            return null;
-        }
+        return checkoutPageTitle.getText();
     }
 
     @Step("Select billing address")
@@ -66,10 +58,6 @@ public class CheckoutPage {
 
     @Step("Get thank you for your purchase message")
     public String getThankYouMessage() {
-        if (thankYouMessage.getText().equals("THANK YOU FOR YOUR PURCHASE!")) {
-            return thankYouMessage.getText();
-        } else {
-            return null;
-        }
+        return thankYouMessage.getText();
     }
 }

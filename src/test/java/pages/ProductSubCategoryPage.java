@@ -5,17 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class ProductSubCategoryPage {
-    private static WebDriver driver;
-
+public class ProductSubCategoryPage extends BasePage {
     @FindBy(css = ".page-title h1")
     private WebElement subCategoryPageTitle;
 
     public ProductSubCategoryPage(WebDriver driver) {
-        ProductSubCategoryPage.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @Step("Get sub category title")

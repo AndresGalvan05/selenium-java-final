@@ -4,12 +4,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class ProductPage {
-    private static WebDriver driver;
-
+public class ProductPage extends BasePage {
     @FindBy(css = ".product-name .h1")
     private WebElement productPageTitle;
 
@@ -29,8 +26,7 @@ public class ProductPage {
     private WebElement addToWishlistButton;
 
     public ProductPage(WebDriver driver) {
-        ProductPage.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @Step("Get product title")
