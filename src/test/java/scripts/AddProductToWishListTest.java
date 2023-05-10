@@ -35,7 +35,12 @@ public class AddProductToWishListTest {
         driver.get(baseUrl);
     }
     @Test(dataProvider = "checkout", dataProviderClass = dataProviders.CheckoutData.class)
-    public void testAddToWishlist(String email, String password, String subCategory, String product) {
+    public void testAddToWishlist(String subCategory, String product) {
+        String email = "8il.andre@gmail.com";
+        String password = "Pass123";
+        String expectedTitle = "MY WISHLIST";
+        String expectedLogoutMessage = "YOU ARE NOW LOGGED OUT";
+
         Header header = new Header(driver);
         LoginPage loginPage = header.clickLogInOption();
         loginPage.setEmailAndPassword(email, password);
@@ -49,13 +54,13 @@ public class AddProductToWishListTest {
         assertEquals(productPage.getProductPageTitle(), product);
 
         WishListPage wishListPage = productPage.addToWishlist();
-        assertEquals(wishListPage.getWishListPageTitle(), "MY WISHLIST");
+        assertEquals(wishListPage.getWishListPageTitle(), expectedTitle);
         assertEquals(wishListPage.getProductName(product), product);
 
         takeScreenshot();
 
         LogOutPage logOutPage = header.clickLogOutOption();
-        assertEquals(logOutPage.getLogOutMessage(), "YOU ARE NOW LOGGED OUT");
+        assertEquals(logOutPage.getLogOutMessage(), expectedLogoutMessage);
     }
     @AfterTest
     public void tearDown() {

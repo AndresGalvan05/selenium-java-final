@@ -40,6 +40,8 @@ public class AddProductToCartTest {
 
     @Test(dataProvider = "products", dataProviderClass = dataProviders.ProductsData.class)
     public void testAddToCart(String subCategory, String product, String productColor, String productSize) {
+        String expectedTitle = "SHOPPING CART";
+
         CategoryMenu categoryMenu = new CategoryMenu(driver, actions);
 
         ProductSubCategoryPage subCategoryPage = categoryMenu.clickMenSubCategory(subCategory);
@@ -50,7 +52,7 @@ public class AddProductToCartTest {
 
         productPage.selectColorAndSize(productColor, productSize);
         CartPage cartPage = productPage.addToCart();
-        assertEquals(cartPage.getCartPageTitle(), "SHOPPING CART");
+        assertEquals(cartPage.getCartPageTitle(), expectedTitle);
         assertEquals(cartPage.getProductName(product), product);
 
         takeScreenshot();

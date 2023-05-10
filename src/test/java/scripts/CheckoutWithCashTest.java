@@ -35,7 +35,13 @@ public class CheckoutWithCashTest {
         driver.get(baseUrl);
     }
     @Test(dataProvider = "checkout", dataProviderClass = dataProviders.CheckoutData.class)
-    public void testCheckoutWithCash(String email, String password, String subCategory, String product) {
+    public void testCheckoutWithCash(String subCategory, String product) {
+        String email = "8il.andre@gmail.com";
+        String password = "Pass123";
+        String expectedTitle = "CHECKOUT";
+        String expectedThankYouMessage = "THANK YOU FOR YOUR PURCHASE!";
+        String expectedLogoutMessage = "YOU ARE NOW LOGGED OUT";
+
         Header header = new Header(driver);
         LoginPage loginPage = header.clickLogInOption();
         loginPage.setEmailAndPassword(email, password);
@@ -48,16 +54,16 @@ public class CheckoutWithCashTest {
         CartPage cartPage = productPage.addToCart();
 
         CheckoutPage checkoutPage = cartPage.clickCheckoutButton();
-        assertEquals(checkoutPage.getCheckoutPageTitle(), "CHECKOUT");
+        assertEquals(checkoutPage.getCheckoutPageTitle(), expectedTitle);
         checkoutPage.selectBillingAddress();
         checkoutPage.selectCashPaymentMethod();
         checkoutPage.clickPlaceOrderButton();
-        assertEquals(checkoutPage.getThankYouMessage(), "THANK YOU FOR YOUR PURCHASE!");
+        assertEquals(checkoutPage.getThankYouMessage(), expectedThankYouMessage);
 
         takeScreenshot();
 
         LogOutPage logOutPage = header.clickLogOutOption();
-        assertEquals(logOutPage.getLogOutMessage(), "YOU ARE NOW LOGGED OUT");
+        assertEquals(logOutPage.getLogOutMessage(), expectedLogoutMessage);
     }
     @AfterTest
     public void tearDown() {

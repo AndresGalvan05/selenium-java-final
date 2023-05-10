@@ -34,10 +34,12 @@ public class SearchProductTest {
     }
     @Test(dataProvider = "searchProducts", dataProviderClass = dataProviders.SearchData.class)
     public void testSearchProduct(String searchTerm, String product) {
+        String expectedTitle = "SEARCH RESULTS FOR '" + searchTerm.toUpperCase() + "'";
+
         Header header = new Header(driver);
 
         SearchProductPage searchPage = header.searchForProduct(searchTerm);
-        assertEquals(searchPage.getSearchPageTitle(searchTerm), "SEARCH RESULTS FOR '" + searchTerm.toUpperCase() + "'");
+        assertEquals(searchPage.getSearchPageTitle(searchTerm), expectedTitle);
         assertEquals(searchPage.findProduct(product), product);
 
         header.clearSearchBar();

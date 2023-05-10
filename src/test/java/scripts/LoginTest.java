@@ -36,19 +36,20 @@ public class LoginTest {
     }
     @Test(dataProvider = "loginCredentials", dataProviderClass = LoginData.class)
     public void loginTest(String email, String password, String customerName) {
-        String welcomeMessage = "Welcome, " + customerName + "!";
+        String expectedWelcomeMessage = "Welcome, " + customerName + "!";
+        String expectedLogoutMessage = "YOU ARE NOW LOGGED OUT";
 
         Header header = new Header(driver);
 
         LoginPage loginPage = header.clickLogInOption();
         loginPage.setEmailAndPassword(email, password);
         loginPage.clickLoginButton();
-        assertEquals(header.getWelcomeMessage(), welcomeMessage.toUpperCase());
+        assertEquals(header.getWelcomeMessage(), expectedWelcomeMessage.toUpperCase());
 
         takeScreenshot();
 
         LogOutPage logOutPage = header.clickLogOutOption();
-        assertEquals(logOutPage.getLogOutMessage(), "YOU ARE NOW LOGGED OUT");
+        assertEquals(logOutPage.getLogOutMessage(), expectedLogoutMessage);
     }
     @AfterTest
     public void tearDown() {
