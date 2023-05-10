@@ -24,7 +24,7 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         actions = new Actions(driver);
         baseUrl = "http://magento-demo.lexiconn.com/";
         driver.get(baseUrl);
